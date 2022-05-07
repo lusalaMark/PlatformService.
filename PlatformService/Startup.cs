@@ -30,7 +30,6 @@ namespace PlatformService
         {
             services.AddScoped<IPlatformRepo, PlatformRepo>();
             services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("InMem"));
-            services.AddScoped<IPlatformRepo>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -58,6 +57,9 @@ namespace PlatformService
             {
                 endpoints.MapControllers();
             });
+
+            PrepDb.PrepPopulation(app);
+
         }
     }
 }
